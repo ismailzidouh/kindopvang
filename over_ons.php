@@ -2,6 +2,9 @@
 
 <html lang="en">
 <head>
+  <?php 
+require_once "./partials/header.php"
+?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -38,5 +41,8 @@
         </div>
       </div>
     </section>
+    <?php 
+require_once "./partials/footer.php"
+?>
 </body>
 </html>

@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
      <link rel="stylesheet" href="style.css" />
+  <?php require_once "./partials/header.php" ?>
 </head>
 <body>
+  
     
     <!-- DIENSTEN -->
     <section id="diensten" class="section alt">
@@ -55,5 +57,8 @@
         </div>
       </div>
     </section>
+    <?php 
+require_once "./partials/footer.php"
+?>
 </body>
 </html>
