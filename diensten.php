@@ -6,6 +6,7 @@
     <title>Document</title>
      <link rel="stylesheet" href="style.css" />
   <?php require_once "./partials/header.php" ?>
+  
 </head>
 <body>
   

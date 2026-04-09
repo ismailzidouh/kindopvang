@@ -7,7 +7,9 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+h2{
+  color: orangered;
+}
 :root {
   --primary: #ff914d;
   --secondary: #4da6ff;
