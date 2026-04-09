@@ -7,9 +7,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-h2{
-  color: orangered;
-}
+
 :root {
   --primary: #ff914d;
   --secondary: #4da6ff;
@@ -17,6 +15,11 @@ h2{
   --dark: #222;
   --light: #ffffff;
   --bg: #f5f7fb;
+  --ora: #ff914d;
+}
+
+html {
+  height: 100%;
 }
 
 body {
@@ -24,6 +27,27 @@ body {
   background-color: var(--bg);
   color: #333;
   line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ================================
+   ACHTERGROND OVERLAY (ALLEEN VOOR PAGINA'S MET BG IMAGE)
+================================ */
+
+/* Alleen actief als body de class "has-bg" heeft OF als er een background-image is */
+body:has(> .bg-overlay-active)::before,
+body.bg-page::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
 }
 
 /* ================================
@@ -33,10 +57,11 @@ body {
 .container {
   width: min(1100px, 100% - 40px);
   margin: 0 auto;
+  padding: 1rem;
 }
 
 .section {
-  padding: 70px 0;
+  padding: 60px 0;
 }
 
 .section.alt {
@@ -55,8 +80,16 @@ body {
 
 .grid-2 {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+
+/* ================================
+   MAIN - ZORGT DAT FOOTER ONDERAAN KOMT
+================================ */
+
+main {
+  flex: 1;
 }
 
 /* ================================
@@ -66,7 +99,7 @@ body {
 header {
   background: var(--light);
   padding: 15px 0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -78,6 +111,13 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+nav img {
+  max-width: 100px;
+  height: auto;
 }
 
 nav .logo {
@@ -89,6 +129,7 @@ nav .logo {
 
 nav ul {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   list-style: none;
 }
@@ -115,7 +156,7 @@ nav ul li a:hover {
 .hero {
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   color: var(--light);
-  padding: 110px 0 90px;
+  padding: 80px 0;
 }
 
 .hero-inner {
@@ -125,7 +166,7 @@ nav ul li a:hover {
 }
 
 .hero h1 {
-  font-size: 2.6rem;
+  font-size: 2.2rem;
   margin-bottom: 20px;
 }
 
@@ -154,6 +195,7 @@ nav ul li a:hover {
   display: inline-block;
   cursor: pointer;
   border: none;
+  transition: 0.2s;
 }
 
 .btn-primary {
@@ -193,7 +235,7 @@ nav ul li a:hover {
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
   margin-top: 20px;
 }
@@ -202,7 +244,7 @@ nav ul li a:hover {
   background: var(--light);
   padding: 25px;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transition: 0.25s;
 }
 
@@ -221,7 +263,7 @@ nav ul li a:hover {
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
 }
 
 .checklist {
@@ -253,7 +295,7 @@ nav ul li a:hover {
   border-radius: 8px;
   padding: 12px 16px;
   margin-bottom: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 .faq summary {
@@ -271,9 +313,10 @@ nav ul li a:hover {
 
 .contact-form {
   background: var(--light);
-  padding: 20px;
+  padding: 25px;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  max-width: 600px;
 }
 
 .form-group {
@@ -300,7 +343,7 @@ nav ul li a:hover {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--secondary);
-  box-shadow: 0 0 0 2px rgba(77,166,255,0.2);
+  box-shadow: 0 0 0 2px rgba(77, 166, 255, 0.2);
 }
 
 /* ================================
@@ -313,29 +356,159 @@ footer {
   text-align: center;
   padding: 20px;
   font-size: 0.9rem;
-  margin-top: 40px;
+  margin-top: auto;
 }
 
 /* ================================
-   RESPONSIVE
+   PAGINA MET ACHTERGROND (Openingstijden & tarief)
+   Dit zorgt voor leesbare tekst op de achtergrondafbeelding
+================================ */
+
+/* Alleen voor de pagina met achtergrondafbeelding */
+body.bg-page {
+  background-image: url('tuo-immagine.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+body.bg-page::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: -1;
+}
+
+/* Witte kaart voor de tekst op de bg-pagina */
+body.bg-page .content-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  padding: 40px;
+  margin: 30px auto;
+  max-width: 900px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+body.bg-page .content-card h2 {
+  color: var(--primary);
+  border-left: 4px solid var(--primary);
+  padding-left: 15px;
+}
+
+body.bg-page .content-card p,
+body.bg-page .content-card li {
+  color: #333;
+}
+
+body.bg-page .price-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+body.bg-page .price-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+body.bg-page .separator {
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), transparent);
+  margin: 30px 0;
+}
+
+/* ================================
+   RESPONSIVE (TELEFOON)
 ================================ */
 
 @media (max-width: 900px) {
   .grid-2 {
     grid-template-columns: 1fr;
+    gap: 30px;
   }
 }
 
 @media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    text-align: center;
+  }
+
   nav ul {
-    display: none; /* hier kun je later een hamburger-menu voor maken */
+    justify-content: center;
+    gap: 12px;
+  }
+
+  nav ul li a {
+    font-size: 0.85rem;
+  }
+
+  .hero {
+    padding: 50px 0;
   }
 
   .hero h1 {
-    font-size: 2.1rem;
+    font-size: 1.6rem;
   }
 
-  .hero-inner {
-    width: min(100% - 40px, 100%);
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .section {
+    padding: 40px 0;
+  }
+
+  .section h2 {
+    font-size: 1.6rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form {
+    padding: 20px;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+
+  body.bg-page .content-card {
+    padding: 25px;
+    margin: 20px;
+  }
+
+  body.bg-page .content-card h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Voor hele kleine telefoons */
+@media (max-width: 480px) {
+  nav ul {
+    gap: 8px;
+  }
+
+  nav ul li a {
+    font-size: 0.75rem;
+  }
+
+  .hero h1 {
+    font-size: 1.3rem;
   }
 }

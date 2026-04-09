@@ -14,7 +14,7 @@
   <section id="contact" class="section alt">
     <div class="container">
       <h2>Contact</h2>
-      <div class="grid-2">
+      <div>
         <div>
           <p>
             Heb je een vraag, wil je meer informatie of een vrijblijvend gesprek plannen?
@@ -40,8 +40,6 @@
             <button type="submit" class="btn-primary">Verstuur bericht</button>
           </form>
         </div>
-        <?php
-        require_once "./partials/footer.php"
-        ?>
+        <?php require_once "./partials/footer.php"?>
 
 </html>

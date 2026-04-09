@@ -1,7 +1,4 @@
-
-<?php 
-require_once "./partials/header.php"
-?>
+<?php require_once "./partials/header.php" ?>
  <link rel="stylesheet" href="style.css" />
  
   <!-- NIEUWS & INSPIRATIE -->

@@ -1,6 +1,6 @@
 <header>
   <nav>
-    <a class="logo" href="#home">ALLESKIDSBV</a>
+  <img src="logo.jpg" alt="logo.jpg">
     <ul>
       <li><a href="index.php">Home</a></li>
       <li><a href="Openingstijden & tarief.php">Openingstijden & tarief</a></li>
@@ -12,15 +12,6 @@
       <link rel="stylesheet" href="style.css" />
     </ul>
   </nav>
-  <style>
-    body {
-      background-image: url('tuo-immagine.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-    }
-  </style>
 </header>
 
 <main>
@@ -38,6 +29,60 @@
       </div>
     </div>
   </section>
+  <?php
+// agenda.php - Agenda eventi minimalista
+
+$file = 'eventi.txt';
+
+// Carica eventi
+$eventi = file_exists($file) ? unserialize(file_get_contents($file)) : [];
+
+// Aggiungi evento
+if (isset($_POST['add'])) {
+    $data = $_POST['data'];
+    $evento = trim($_POST['evento']);
+    if ($data && $evento) {
+        $eventi[$data][] = htmlspecialchars($evento);
+        file_put_contents($file, serialize($eventi));
+    }
+}
+
+// Elimina evento
+if (isset($_POST['del'])) {
+    unset($eventi[$_POST['data']][$_POST['idx']]);
+    if (empty($eventi[$_POST['data']])) unset($eventi[$_POST['data']]);
+    file_put_contents($file, serialize($eventi));
+}
+
+$oggi = date('Y-m-d');
+?>
+
+    <meta charset="UTF-8">
+    <title>Agenda</title>
+    
+</head>
+<body>
+
+<div class="card">
+    <h3>📋 Lijst met evenementen</h3>
+    <?php if (empty($eventi)): ?>
+        <div class="vuoto">Geen evenementen!</div>
+    <?php else: ?>
+        <?php ksort($eventi); foreach ($eventi as $data => $lista): ?>
+            <div class="data">📅 <?= date('d/m/Y', strtotime($data)) ?></div>
+            <?php foreach ($lista as $idx => $evento): ?>
+                <div class="evento">
+                    <span>📌 <?= $evento ?></span>
+                    <form method="POST" style="margin:0">
+                        <input type="hidden" name="data" value="<?= $data ?>">
+                        <input type="hidden" name="idx" value="<?= $idx ?>">
+                        <button type="submit" name="del" class="del-btn">🗑️</button>
+                    </form>
+                </div>
+            <?php endforeach; ?>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>
   <!-- OVER ONS -->
   <section id="over-ons" class="section">
     <div class="container">
@@ -69,3 +114,4 @@
     </div>
   </section>
 </main>
+<?php require_once "./partials/footer.php"?>
