@@ -1,29 +1,7 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alles Kids - Openingstijden & tarief</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-page">
+<?php require_once "./partials/header.php" ?>
 
-<header>
-    <nav>
-        <img src="logo.jpg" alt="Alles Kids logo">
-        <ul>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="Openingstijden%20&%20tarief.php">Openingstijden & tarief</a></li>
-            <li><a href="diensten.php">Diensten</a></li>
-            <li><a href="voor%20ouders.php">Voor ouders</a></li>
-            <li><a href="voor%20organisaties.php">Voor organisaties</a></li>
-            <li><a href="nieuws.php">Nieuws & inspiratie</a></li>
-            <li><a href="contact.php">Contact</a></li>
-        </ul>
-    </nav>
-</header>
 
-<main>
+<main class="bg-page">
     <div class="content-card">
         <h2>📅 Openingstijden</h2>
         <p>Alles Kids is, met uitzondering van de algemeen erkende feestdagen, in principe het gehele jaar geopend op <strong>maandag t/m donderdag van 07.30 uur tot 18.30 uur</strong> en <strong>vrijdag van 07.30 uur tot 18.00 uur</strong>. Zie verder onze algemene voorwaarden artikel 6.</p>
@@ -47,9 +25,6 @@
     </div>
 </main>
 
-<footer>
-    <p>&copy; 2026 ALLESKIDSBV. Alle rechten voorbehouden.</p>
-</footer>
-
-</body>
-</html>
+<?php 
+require_once "./partials/footer.php"
+?>

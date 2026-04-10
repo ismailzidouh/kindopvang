@@ -1,18 +1,4 @@
-<header>
-  <nav>
-  <img src="logo.jpg" alt="logo.jpg">
-    <ul>
-      <li><a href="index.php">Home</a></li>
-      <li><a href="Openingstijden & tarief.php">Openingstijden & tarief</a></li>
-      <li><a href="diensten.php">Diensten</a></li>
-      <li><a href="voor ouders.php">Voor ouders</a></li>
-      <li><a href="voor organisaties.php">Voor organisaties</a></li>
-      <li><a href="nieuws..php">Nieuws & inspiratie</a></li>
-      <li><a href="contact.php">Contact</a></li>
-      <link rel="stylesheet" href="style.css" />
-    </ul>
-  </nav>
-</header>
+<?php require_once "./partials/header.php" ?>
 
 <main>
   <!-- HOME -->
@@ -64,9 +50,9 @@ $oggi = date('Y-m-d');
 <body>
 
 <div class="card">
-    <h3>📋 Lijst met evenementen</h3>
+    <h3>📋 Lijst met themas</h3>
     <?php if (empty($eventi)): ?>
-        <div class="vuoto">Geen evenementen!</div>
+        <div class="vuoto">Geen themas!</div>
     <?php else: ?>
         <?php ksort($eventi); foreach ($eventi as $data => $lista): ?>
             <div class="data">📅 <?= date('d/m/Y', strtotime($data)) ?></div>

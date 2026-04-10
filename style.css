@@ -22,7 +22,7 @@ html {
   height: 100%;
 }
 
-body {
+main {
   font-family: "Poppins", Arial, sans-serif;
   background-color: var(--bg);
   color: #333;
@@ -37,9 +37,9 @@ body {
    ACHTERGROND OVERLAY (ALLEEN VOOR PAGINA'S MET BG IMAGE)
 ================================ */
 
-/* Alleen actief als body de class "has-bg" heeft OF als er een background-image is */
-body:has(> .bg-overlay-active)::before,
-body.bg-page::before {
+/* Alleen actief als main de class "has-bg" heeft OF als er een background-image is */
+main:has(> .bg-overlay-active)::before,
+main.bg-page::before {
   content: "";
   position: fixed;
   top: 0;
@@ -365,7 +365,7 @@ footer {
 ================================ */
 
 /* Alleen voor de pagina met achtergrondafbeelding */
-body.bg-page {
+main.bg-page {
   background-image: url('tuo-immagine.jpg');
   background-size: cover;
   background-position: center;
@@ -373,7 +373,7 @@ body.bg-page {
   background-attachment: fixed;
 }
 
-body.bg-page::before {
+main.bg-page::before {
   content: "";
   position: fixed;
   top: 0;
@@ -385,7 +385,7 @@ body.bg-page::before {
 }
 
 /* Witte kaart voor de tekst op de bg-pagina */
-body.bg-page .content-card {
+main.bg-page .content-card {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 24px;
   padding: 40px;
@@ -394,23 +394,23 @@ body.bg-page .content-card {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-body.bg-page .content-card h2 {
+main.bg-page .content-card h2 {
   color: var(--primary);
   border-left: 4px solid var(--primary);
   padding-left: 15px;
 }
 
-body.bg-page .content-card p,
-body.bg-page .content-card li {
+main.bg-page .content-card p,
+main.bg-page .content-card li {
   color: #333;
 }
 
-body.bg-page .price-list {
+main.bg-page .price-list {
   list-style: none;
   padding-left: 0;
 }
 
-body.bg-page .price-list li {
+main.bg-page .price-list li {
   padding: 10px 0;
   border-bottom: 1px solid #e0e0e0;
   display: flex;
@@ -418,7 +418,7 @@ body.bg-page .price-list li {
   flex-wrap: wrap;
 }
 
-body.bg-page .separator {
+main.bg-page .separator {
   height: 2px;
   background: linear-gradient(90deg, var(--primary), transparent);
   margin: 30px 0;
@@ -488,12 +488,17 @@ body.bg-page .separator {
     padding: 1rem;
   }
 
-  body.bg-page .content-card {
+  main.bg-page .content-card {
     padding: 25px;
     margin: 20px;
   }
 
-  body.bg-page .content-card h2 {
+  main.bg-page .content-card {
+    padding: 25px;
+    margin: 20px;
+  }
+
+  main.bg-page .content-card h2 {
     font-size: 1.5rem;
   }
 }

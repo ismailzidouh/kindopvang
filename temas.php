@@ -113,11 +113,12 @@ $oggi = date('Y-m-d');
             padding: 20px;
         }
     </style>
+    <link rel="icon" type="image/png" href="logo.jpg">
 </head>
 
 <body>
     <div class="card">
-        <h1>📅 Evenementenagenda</h1>
+        <h1>📅 themas agenda</h1>
 
         <form method="POST">
             <div class="flex">
@@ -131,9 +132,9 @@ $oggi = date('Y-m-d');
         </form>
     </div>
     <div class="card">
-        <h3>📋 Lijst met evenementen</h3>
+        <h3>📋 Lijst met thema</h3>
         <?php if (empty($eventi)): ?>
-            <div class="vuoto">Geen evenementen. Voeg er een toe!</div>
+            <div class="vuoto">Geen themas. Voeg er een toe!</div>
         <?php else: ?>
             <?php ksort($eventi);
             foreach ($eventi as $data => $lista): ?>
